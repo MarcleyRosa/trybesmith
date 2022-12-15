@@ -4,6 +4,14 @@ export type User = {
   amount: string;
 };
 
-export type Request = {
+export type NewUser = {
+  username: string;
+  vocation: string;
+  level: number;
+  password: string;
+};
 
+export type ConfigJwt = {
+  expiresIn: string,
+  algorithm: string,
 };
