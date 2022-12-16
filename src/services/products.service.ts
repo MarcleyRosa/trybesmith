@@ -1,26 +1,40 @@
-import { NewUser, User } from '../interface';
-import { getAllProductsModel, getOrdersModel, postProductModel,
-  postUserModel } from '../models/products.model';
+import { InterProducts } from '../interface';
+// import { getAllProductsModel, getOrdersModel, postProductModel,
+//   postUserModel } from '../models/products.model';
 
-export const getAllProductsService = async () => {
-  const getAll = await getAllProductsModel();
+import ProductsModel from '../models/products.model';
 
-  return getAll;
-};
+export default class ProductsService {
+  constructor(public model = new ProductsModel()) {
+  }
 
-export const postProductService = async (products: User): Promise<number> => {
-  const postProduct = await postProductModel(products);
+  public async getAll(): Promise<InterProducts[]> {
+    const products = await this.model.getAll();
+    console.log(products);
+    
+    return products;
+  }
+}
 
-  return postProduct;
-};
+// export const getAllProductsService = async () => {
+//   const getAll = await getAllProductsModel();
 
-export const postUserService = async (newUser: NewUser): Promise<number> => {
-  const userId = await postUserModel(newUser);
+//   return getAll;
+// };
 
-  return userId;
-};
+// export const postProductService = async (products: User): Promise<number> => {
+//   const postProduct = await postProductModel(products);
 
-export const getOrdersService = async () => {
-  const getAllOrders = await getOrdersModel();
-  return getAllOrders;
-};
+//   return postProduct;
+// };
+
+// export const postUserService = async (newUser: NewUser): Promise<number> => {
+//   const userId = await postUserModel(newUser);
+
+//   return userId;
+// };
+
+// export const getOrdersService = async () => {
+//   const getAllOrders = await getOrdersModel();
+//   return getAllOrders;
+// };

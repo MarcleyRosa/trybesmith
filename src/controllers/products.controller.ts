@@ -1,31 +1,39 @@
 import { Request, Response } from 'express';
-import { tokenUser } from '../middlewares/jwtFunction';
-import { postProductService, getAllProductsService,
-  postUserService, getOrdersService } from '../services/products.service';
+import ProductsService from '../services/products.service';
 
-export const getAllProducts = async (req: Request, res: Response) => {
-  const getAllController = await getAllProductsService();
+export default class ProductsController {
+  constructor(private service = new ProductsService()) {}
 
-  return res.status(200).json(getAllController);
-};
+  public getAll = async (_req: Request, res: Response) => {
+    const products = await this.service.getAll();
 
-export const postProduct = async (req: Request, res: Response) => {
-  const products = req.body;
-  const addProducts = await postProductService(products);
+    return res.status(200).json(products);
+  };
+}
 
-  return res.status(201).json({ id: addProducts, ...products });
-};
+// export const getAllProducts = async (req: Request, res: Response) => {
+//   const getAllController = await getAllProductsService();
 
-export const postUser = async (req: Request, res: Response) => {
-  const newUser = req.body;
-  await postUserService(newUser);
+//   return res.status(200).json(getAllController);
+// };
 
-  const token = tokenUser(newUser);
+// export const postProduct = async (req: Request, res: Response) => {
+//   const products = req.body;
+//   const addProducts = await postProductService(products);
 
-  res.status(201).json({ token });
-};
+//   return res.status(201).json({ id: addProducts, ...products });
+// };
 
-export const getAllOrders = async (req: Request, res: Response) => {
-  const getAll = await getOrdersService();
-  res.status(200).json(getAll);
-};
+// export const postUser = async (req: Request, res: Response) => {
+//   const newUser = req.body;
+//   await postUserService(newUser);
+
+//   const token = tokenUser(newUser);
+
+//   res.status(201).json({ token });
+// };
+
+// export const getAllOrders = async (req: Request, res: Response) => {
+//   const getAll = await getOrdersService();
+//   res.status(200).json(getAll);
+// };
