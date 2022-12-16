@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { tokenUser } from '../middlewares/jwtFunction';
 import { postProductService, getAllProductsService,
-  postUserService } from '../services/products.service';
+  postUserService, getOrdersService } from '../services/products.service';
 
 export const getAllProducts = async (req: Request, res: Response) => {
   const getAllController = await getAllProductsService();
@@ -23,4 +23,9 @@ export const postUser = async (req: Request, res: Response) => {
   const token = tokenUser(newUser);
 
   res.status(201).json({ token });
+};
+
+export const getAllOrders = async (req: Request, res: Response) => {
+  const getAll = await getOrdersService();
+  res.status(200).json(getAll);
 };

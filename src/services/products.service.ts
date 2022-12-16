@@ -1,5 +1,6 @@
 import { NewUser, User } from '../interface';
-import { getAllProductsModel, postProductModel, postUserModel } from '../models/products.model';
+import { getAllProductsModel, getOrdersModel, postProductModel,
+  postUserModel } from '../models/products.model';
 
 export const getAllProductsService = async () => {
   const getAll = await getAllProductsModel();
@@ -17,4 +18,9 @@ export const postUserService = async (newUser: NewUser): Promise<number> => {
   const userId = await postUserModel(newUser);
 
   return userId;
+};
+
+export const getOrdersService = async () => {
+  const getAllOrders = await getOrdersModel();
+  return getAllOrders;
 };
