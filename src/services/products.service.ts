@@ -5,12 +5,10 @@ import { InterProducts, User } from '../interface';
 import ProductsModel from '../models/products.model';
 
 export default class ProductsService {
-  constructor(public model = new ProductsModel()) {
-  }
+  constructor(public model = new ProductsModel()) {}
 
   public async getAll(): Promise<InterProducts[]> {
     const products = await this.model.getAll();
-    console.log(products);
     
     return products;
   }
@@ -21,8 +19,3 @@ export default class ProductsService {
     return postProduct;
   }
 }
-
-// export const getOrdersService = async () => {
-//   const getAllOrders = await getOrdersModel();
-//   return getAllOrders;
-// };

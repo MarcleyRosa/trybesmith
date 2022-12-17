@@ -1,8 +1,7 @@
 import express from 'express';
-// import { getAllOrders, getAllProducts, postProduct,
-//   postUser } from './controllers/products.controller';
 import productsRouter from './routes/products.router';
-import usersRouter from './routes/user.touter';
+import usersRouter from './routes/user.router';
+import ordersRouter from './routes/orders.routes';
 
 const app = express();
 
@@ -12,8 +11,6 @@ app.use('/products', productsRouter);
 
 app.use('/users', usersRouter);
 
-// app.post('/users', postUser);
-
-// app.get('/orders', getAllOrders);
+app.use('/orders', ordersRouter);
 
 export default app;

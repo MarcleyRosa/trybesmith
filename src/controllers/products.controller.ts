@@ -17,8 +17,3 @@ export default class ProductsController {
     return res.status(201).json({ id: addProducts, ...products });
   };
 }
-
-// export const getAllOrders = async (req: Request, res: Response) => {
-//   const getAll = await getOrdersService();
-//   res.status(200).json(getAll);
-// };

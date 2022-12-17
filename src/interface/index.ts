@@ -24,3 +24,9 @@ export interface InterProducts {
   orderId?: number
 
 }
+
+export interface ProdIds {
+  id: number,
+  userId: number,
+  productsIds: number[]
+}
