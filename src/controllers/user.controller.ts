@@ -14,12 +14,3 @@ export default class UserController {
     return res.status(201).json({ token });
   };
 }
-
-// export const postUser = async (req: Request, res: Response) => {
-//   const newUser = req.body;
-//   await postUserService(newUser);
-
-//   const token = tokenUser(newUser);
-
-//   res.status(201).json({ token });
-// };

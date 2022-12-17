@@ -5,28 +5,34 @@ export interface User {
 }
 
 export interface NewUser {
+  id?: number;
   username: string;
   vocation: string;
   level: number;
-  password: string;
+  password?: string;
 }
 
 export interface ConfigJwt {
-  expiresIn: string,
-  algorithm: string,
+  expiresIn: string;
+  algorithm: string;
 }
 
 export interface InterProducts {
 
-  id: number,
-  name: string,
+  id: number;
+  name: string;
   amount: string;
-  orderId?: number
+  orderId?: number;
 
 }
 
 export interface ProdIds {
-  id: number,
-  userId: number,
-  productsIds: number[]
+  id: number;
+  userId: number;
+  productsIds: number[];
+}
+
+export interface UserLogin {
+  username: string;
+  password: string;
 }
