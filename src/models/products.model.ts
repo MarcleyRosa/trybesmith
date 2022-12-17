@@ -26,17 +26,6 @@ export default class ProductsModel {
   }
 }
 
-// export const postUserModel = async (newUser: NewUser): Promise<number> => {
-//   const { username, vocation, level, password } = newUser;
-//   const [{ insertId }] = await connection
-//     .execute<ResultSetHeader>(
-//     'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
-//     [username, vocation, level, password],
-//   );
-
-//   return insertId;
-// };
-
 // export const getOrdersModel = async () => {
 //   const [conn] = await connection.execute(`SELECT o.id, o.user_id AS userId, JSON_ARRAYAGG(p.id) 
 //   AS productsIds FROM Trybesmith.orders AS o

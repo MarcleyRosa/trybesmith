@@ -22,24 +22,6 @@ export default class ProductsService {
   }
 }
 
-// export const getAllProductsService = async () => {
-//   const getAll = await getAllProductsModel();
-
-//   return getAll;
-// };
-
-// export const postProductService = async (products: User): Promise<number> => {
-//   const postProduct = await postProductModel(products);
-
-//   return postProduct;
-// };
-
-// export const postUserService = async (newUser: NewUser): Promise<number> => {
-//   const userId = await postUserModel(newUser);
-
-//   return userId;
-// };
-
 // export const getOrdersService = async () => {
 //   const getAllOrders = await getOrdersModel();
 //   return getAllOrders;
