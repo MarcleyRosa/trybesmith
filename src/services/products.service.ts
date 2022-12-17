@@ -1,4 +1,4 @@
-import { InterProducts } from '../interface';
+import { InterProducts, User } from '../interface';
 // import { getAllProductsModel, getOrdersModel, postProductModel,
 //   postUserModel } from '../models/products.model';
 
@@ -13,6 +13,12 @@ export default class ProductsService {
     console.log(products);
     
     return products;
+  }
+
+  public async create(products: User): Promise<number> {
+    const postProduct = await this.model.create(products);
+
+    return postProduct;
   }
 }
 

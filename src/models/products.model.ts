@@ -1,7 +1,7 @@
-// import { ResultSetHeader } from 'mysql2';
+import { ResultSetHeader } from 'mysql2';
 import { Pool } from 'mysql2/promise';
 import connection from './connection';
-import { InterProducts } from '../interface';
+import { InterProducts, User } from '../interface';
 
 export default class ProductsModel {
   public connection: Pool;
@@ -14,24 +14,17 @@ export default class ProductsModel {
     const [conn] = await this.connection.execute('SELECT * FROM Trybesmith.products');
     return conn as InterProducts[];
   }
+
+  public async create(products: User): Promise<number> {
+    const { name, amount } = products;
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
+      'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
+      [name, amount],
+    );
+
+    return insertId;
+  }
 }
-
-// export const getAllProductsModel = async () => {
-//   const [conn] = await connection.execute('SELECT * FROM Trybesmith.products');
-
-//   return conn;
-// };
-
-// export const postProductModel = async (products: User): Promise<number> => {
-//   const { name, amount } = products;
-//   const [{ insertId }] = await connection
-//     .execute<ResultSetHeader>(
-//     'INSERT INTO Trybesmith.products (name, amount) VALUES (?, ?)',
-//     [name, amount],
-//   );
-
-//   return insertId;
-// };
 
 // export const postUserModel = async (newUser: NewUser): Promise<number> => {
 //   const { username, vocation, level, password } = newUser;

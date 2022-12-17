@@ -9,20 +9,14 @@ export default class ProductsController {
 
     return res.status(200).json(products);
   };
+
+  public create = async (req: Request, res: Response) => {
+    const products = req.body;
+    const addProducts = await this.service.create(products);
+
+    return res.status(201).json({ id: addProducts, ...products });
+  };
 }
-
-// export const getAllProducts = async (req: Request, res: Response) => {
-//   const getAllController = await getAllProductsService();
-
-//   return res.status(200).json(getAllController);
-// };
-
-// export const postProduct = async (req: Request, res: Response) => {
-//   const products = req.body;
-//   const addProducts = await postProductService(products);
-
-//   return res.status(201).json({ id: addProducts, ...products });
-// };
 
 // export const postUser = async (req: Request, res: Response) => {
 //   const newUser = req.body;
