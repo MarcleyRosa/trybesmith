@@ -1,14 +1,21 @@
 import Joi from 'joi';
 
-export const isName = Joi.string().required().min(3).messages({
-  'string.base': '"name" must be a string',
-  'any.required': '"name" is required',
-  'string.min': '"name" length must be at least 3 characters long',
+export const isLevel = Joi.number().required().min(1).messages({
+  'number.base': '"level" must be a number',
+  'any.required': '"level" is required',
+  'number.min': '"level" must be greater than or equal to 1',
 });
-export const isAmount = Joi.string().required().min(3).messages({
-  'string.base': '"amount" must be a string',
-  'any.required': '"amount" is required',
-  'string.min': '"amount" length must be at least 3 characters long',
+
+export const isPassword = Joi.string().required().min(8).messages({
+  'string.base': '"password" must be a string',
+  'any.required': '"password" is required',
+  'string.min': '"password" length must be at least 8 characters long',
+});
+
+export const funcValidation = (prop: string) => Joi.string().required().min(3).messages({
+  'string.base': `"${prop}" must be a string`,
+  'any.required': `"${prop}" is required`,
+  'string.min': `"${prop}" length must be at least 3 characters long`,
 });
 
 export const userLogin = Joi.object({
