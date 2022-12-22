@@ -1,3 +1,4 @@
+import { Pedido } from '../interface';
 import OrdersModel from '../models/orders.model';
 
 export default class OrdersService {
@@ -6,5 +7,11 @@ export default class OrdersService {
   public async getAllIds() {
     const getAllOrders = await this.model.getAllIds();
     return getAllOrders;
+  }
+
+  public async create(order: Pedido): Promise<number> {
+    const postProduct = await this.model.create(order);
+
+    return postProduct;
   }
 }

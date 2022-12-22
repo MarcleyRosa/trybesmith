@@ -7,4 +7,6 @@ const ordersController = new OrdersController();
 
 router.get('/', ordersController.getAllIds);
 
+router.post('/', ordersController.create);
+
 export default router;
