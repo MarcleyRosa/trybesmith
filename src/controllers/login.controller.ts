@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { NewUser } from '../interface';
 import { tokenUser } from '../middlewares/jwtFunction';
 import LoginService from '../services/login.service';
 
@@ -12,9 +11,7 @@ export default class LoginController {
     
     if (type) return res.status(type).json({ message });
 
-    console.log(message);
-    
-    const token = tokenUser(message as NewUser);
+    const token = tokenUser(userInfo);
 
     return res.status(200).json({ token });
   };
