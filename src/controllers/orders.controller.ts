@@ -1,22 +1,29 @@
 import { Request, Response } from 'express';
-import OrdersService from '../services/orders.service';
+import { ReturnToken } from '../interface';
 import { verifyToken } from '../middlewares/jwtFunction';
+import OrdersService from '../services/orders.service';
+import UserService from '../services/user.service';
 
 export default class OrdersController {
-  constructor(private service = new OrdersService()) {}
+  constructor(private service = new OrdersService(), private userService = new UserService()) {}
 
   public getAllIds = async (_req: Request, res: Response) => {
     const getAll = await this.service.getAllIds();
-    res.status(200).json(getAll);
+    return res.status(200).json(getAll);
   };
 
   public create = async (req: Request, res: Response) => {
     const products = req.body;
+
     const { authorization } = req.headers;
-    const tokenVerify = verifyToken(authorization as string);
-    console.log(tokenVerify);
+
+    const user = verifyToken(authorization as string);
+
+    const [getBy] = await this.userService.getById(user as ReturnToken);
     
-    const getAll = await this.service.create(products);
-    res.status(200).json(getAll);
+    const insert = await this.service.create(products, getBy);
+    console.log(insert);
+    
+    return res.status(200).json({ userId: getBy, productsIds: products });
   };
 }

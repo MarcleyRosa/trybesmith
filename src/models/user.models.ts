@@ -1,5 +1,5 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import { NewUser } from '../interface';
+import { NewUser, ReturnToken, UserId } from '../interface';
 import connection from './connection';
 
 export default class UserModel {
@@ -17,5 +17,12 @@ export default class UserModel {
     );
     
     return insertId;
+  }
+
+  public async getById(user: ReturnToken) {
+    const { username } = user;
+    const [findUser] = await this.connection
+      .execute('SELECT id FROM Trybesmith.users WHERE username = ?', [username]);
+    return findUser as UserId[];
   }
 }

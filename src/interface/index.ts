@@ -12,6 +12,10 @@ export interface NewUser {
   password?: string;
 }
 
+export interface UserId {
+  id: number;
+}
+
 export interface ConfigJwt {
   expiresIn: string;
   algorithm: string;
@@ -39,4 +43,11 @@ export interface UserLogin {
 
 export interface Pedido {
   productsIds: object;
+}
+
+export interface ReturnToken{
+  username: string,
+  password: string,
+  iat: number,
+  exp: number
 }
