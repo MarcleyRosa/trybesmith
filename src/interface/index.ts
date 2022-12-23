@@ -42,7 +42,7 @@ export interface UserLogin {
 }
 
 export interface Pedido {
-  productsIds: object;
+  productsIds: number[];
 }
 
 export interface ReturnToken{

@@ -1,4 +1,3 @@
-import { Pedido, UserId } from '../interface';
 import OrdersModel from '../models/orders.model';
 
 export default class OrdersService {
@@ -9,9 +8,16 @@ export default class OrdersService {
     return getAllOrders;
   }
 
-  public async create(order: Pedido, userId: UserId): Promise<number> {
-    const postProduct = await this.model.create(order, userId);
+  public async create(userId: number): Promise<number> {
+    const postProduct = await this.model.create(userId);
 
     return postProduct;
+  }
+
+  public async update(pruducts: number[], id: number) {
+    await Promise.all(pruducts.map(async (prod) => {
+      const updated = this.model.update(prod, id);
+      return updated;
+    }));
   }
 }

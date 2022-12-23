@@ -1,5 +1,5 @@
 import { Pool, ResultSetHeader } from 'mysql2/promise';
-import { Pedido, ProdIds, UserId } from '../interface';
+import { ProdIds } from '../interface';
 import connection from './connection';
 
 export default class OrdersModel {
@@ -17,12 +17,22 @@ export default class OrdersModel {
     return conn as ProdIds[];
   }
 
-  public async create(order: Pedido, userId: UserId): Promise<number> {
+  public async create(userId: number): Promise<number> {
+    console.log('utststs', userId);
+    
     const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
       [userId],
     );
 
     return insertId;
+  }
+
+  public async update(product: number, id: number) {
+    const uptdates = await this.connection.execute(
+      'UPDATE Trybesmith.products SET order_id = ? WHERE id = ?',
+      [id, product],
+    );
+    return uptdates;
   }
 }

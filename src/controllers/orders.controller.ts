@@ -13,7 +13,7 @@ export default class OrdersController {
   };
 
   public create = async (req: Request, res: Response) => {
-    const products = req.body;
+    const { productsIds } = req.body;
 
     const { authorization } = req.headers;
 
@@ -21,9 +21,10 @@ export default class OrdersController {
 
     const [getBy] = await this.userService.getById(user as ReturnToken);
     
-    const insert = await this.service.create(products, getBy);
+    const insert = await this.service.create(getBy.id);
+    await this.service.update(productsIds, insert);
     console.log(insert);
     
-    return res.status(200).json({ userId: getBy, productsIds: products });
+    return res.status(201).json({ userId: getBy.id, productsIds });
   };
 }
